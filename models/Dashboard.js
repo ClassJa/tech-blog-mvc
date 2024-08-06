@@ -2,9 +2,9 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
 // Create Project model and datatypes, including the user_id foreign key.
-class Post extends Model {}
+class Dashboard extends Model {}
 
-Post.init(
+Dashboard.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -12,24 +12,13 @@ Post.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    post_title: {
+    blog: {
       type: DataTypes.STRING,
-      allowNull: false,
-    },
-    content: {
-      type: DataTypes.STRING,
-    },
-    date_created: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
-    user_id: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'user',
-        key: 'id',
-      },
+      references: 
+      {
+        model: 'blog',
+        key: 'id'
+      }
     },
   },
   {
@@ -37,8 +26,8 @@ Post.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'post',
+    modelName: 'dashboard',
   }
 );
 
-module.exports = Post;
+module.exports = Dashboard;
